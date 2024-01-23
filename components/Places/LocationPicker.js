@@ -15,7 +15,7 @@ import { Colors } from '../../constants/colors';
 import { useEffect, useState } from 'react';
 import { getMapPreview } from '../../util/location';
 
-const LocationPicker = () => {
+const LocationPicker = ({ onLocationPick }) => {
   const [pickedLocation, setPickedLocation] = useState();
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
@@ -34,6 +34,10 @@ const LocationPicker = () => {
       setPickedLocation(mapPickedLocation);
     }
   }, [route, isFocused]);
+
+  useEffect(() => {
+    onLocationPick(pickedLocation);
+  }, [pickedLocation, onLocationPick]);
 
   const verifyPermissions = async () => {
     if (
