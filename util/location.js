@@ -6,3 +6,15 @@ export const getMapPreview = (lat, lng) => {
 &key=${GOOGLE_API_KEY}&signature=YOUR_SIGNATURE`;
   return `https://d2qpjo1h61iqqh.cloudfront.net/image/49_paisa_per_lakh_hr_hi.jpg`;
 };
+
+export const getAddress = async (lat, lng) => {
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_API_KEY}`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error('Falied to fetch address');
+  }
+
+  const data = await response.json();
+  const address = data?.results[0]?.formatted_address;
+  return 'Pune, MH, India';
+};
