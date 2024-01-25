@@ -4,8 +4,9 @@ import { Colors } from '../../constants/colors';
 import ImagePicker from './ImagePicker';
 import LocationPicker from './LocationPicker';
 import Button from '../UI/Button';
+import { Place } from '../../models/place';
 
-const PlaceForm = () => {
+const PlaceForm = ({ onCreatePlace }) => {
   const [enteredTitle, setEnteredTitle] = useState('');
   const [pickedLocation, setPickedLocation] = useState('');
   const [capturedImage, setCapturedImage] = useState('');
@@ -23,9 +24,8 @@ const PlaceForm = () => {
   }, []);
 
   const savePlaceHandler = () => {
-    console.log(enteredTitle);
-    console.log(capturedImage);
-    console.log(pickedLocation);
+    const placeData = new Place(enteredTitle, capturedImage, pickedLocation);
+    onCreatePlace(placeData);
   };
   return (
     <ScrollView style={styles.form}>
