@@ -40,8 +40,8 @@ const ImagePicker = ({ onImageCapture }) => {
       aspect: [16, 9],
       quality: 0.5,
     });
-    setPickedImage(image.uri);
-    onImageCapture(image.uri);
+    setPickedImage(image.assets[0].uri);
+    onImageCapture(image.assets[0].uri);
   };
   let imagePreview = <Text>No Image Captured Yet.</Text>;
 
